@@ -10,10 +10,7 @@ const FormItem = Form.Item
 const Login = ({
   loading,
   dispatch,
-  form: {
-    getFieldDecorator,
-    validateFieldsAndScroll,
-  },
+  form: { getFieldDecorator, validateFieldsAndScroll },
 }) => {
   function handleOk () {
     validateFieldsAndScroll((errors, values) => {
@@ -38,7 +35,13 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input size="large" onPressEnter={handleOk} placeholder="Username" />)}
+          })(
+            <Input
+              size="large"
+              onPressEnter={handleOk}
+              placeholder="Username"
+            />
+          )}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -47,18 +50,40 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="Password" />)}
+          })(
+            <Input
+              size="large"
+              type="password"
+              onPressEnter={handleOk}
+              placeholder="Password"
+            />
+          )}
         </FormItem>
         <Row>
-          <Button type="primary" size="large" onClick={handleOk} loading={loading.effects.login}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={handleOk}
+            loading={loading.effects.login}
+          >
             Sign in
           </Button>
           <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
+            <span>
+              {"Don't have an account? "}
+              <a onClick={handleOk} href="#">
+                Sign up
+              </a>
+            </span>
+          </p>
+          <p>
+            <span>
+              <a onClick={handleOk} href="#">
+                Forgot your password?
+              </a>
+            </span>
           </p>
         </Row>
-
       </form>
     </div>
   )
