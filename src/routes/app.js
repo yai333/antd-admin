@@ -20,7 +20,16 @@ const { Header, Bread, Footer, Sider, styles } = Layout
 let lastHref
 
 const App = ({ children, dispatch, app, loading, location }) => {
-  const { user, siderFold, darkTheme, isNavbar, menuPopoverVisible, navOpenKeys, menu, permissions } = app
+  const {
+    user,
+    siderFold,
+    darkTheme,
+    isNavbar,
+    menuPopoverVisible,
+    navOpenKeys,
+    menu,
+    permissions,
+  } = app
   let { pathname } = location
   pathname = pathname.startsWith('/') ? pathname : `/${pathname}`
   const { iconFontJS, iconFontCSS, logo } = config
@@ -78,10 +87,12 @@ const App = ({ children, dispatch, app, loading, location }) => {
     location,
   }
   if (openPages && openPages.includes(pathname)) {
-    return (<div>
-      <Loader fullScreen spinning={loading.effects['app/query']} />
-      {children}
-    </div>)
+    return (
+      <div>
+        <Loader fullScreen spinning={loading.effects['app/query']} />
+        {children}
+      </div>
+    )
   }
   return (
     <div>
@@ -93,18 +104,26 @@ const App = ({ children, dispatch, app, loading, location }) => {
         {iconFontJS && <script src={iconFontJS} />}
         {iconFontCSS && <link rel="stylesheet" href={iconFontCSS} />}
       </Helmet>
-      <div className={classnames(styles.layout, { [styles.fold]: isNavbar ? false : siderFold }, { [styles.withnavbar]: isNavbar })}>
-        {!isNavbar ? <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
-          {siderProps.menu.length === 0 ? null : <Sider {...siderProps} />}
-        </aside> : ''}
+      <div
+        className={classnames(
+          styles.layout,
+          { [styles.fold]: isNavbar ? false : siderFold },
+          { [styles.withnavbar]: isNavbar }
+        )}
+      >
+        {!isNavbar ? (
+          <aside className={classnames(styles.sider, { [styles.light]: !darkTheme })}>
+            {siderProps.menu.length === 0 ? null : <Sider {...siderProps} />}
+          </aside>
+        ) : (
+          ''
+        )}
         <div className={styles.main} id="mainContainer">
           <BackTop target={() => document.getElementById('mainContainer')} />
           <Header {...headerProps} />
           <Bread {...breadProps} />
           <div className={styles.container}>
-            <div className={styles.content}>
-              {hasPermission ? children : <Error />}
-            </div>
+            <div className={styles.content}>{hasPermission ? children : <Error />}</div>
           </div>
           <Footer />
         </div>

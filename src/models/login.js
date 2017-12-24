@@ -7,9 +7,7 @@ export default {
   state: {},
 
   effects: {
-    * login ({
-      payload,
-    }, { put, call, select }) {
+    * login ({ payload }, { put, call, select }) {
       const data = yield call(login, payload)
       const { locationQuery } = yield select(_ => _.app)
       if (data.success) {
@@ -24,6 +22,8 @@ export default {
         throw data
       }
     },
+    * gotSignupPage (action, { put }) {
+      yield put(routerRedux.push('/signup'))
+    },
   },
-
 }

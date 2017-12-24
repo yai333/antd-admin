@@ -30,8 +30,7 @@ export default {
     siderFold: window.localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: window.localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
-    navOpenKeys:
-      JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
+    navOpenKeys: JSON.parse(window.localStorage.getItem(`${prefix}navOpenKeys`)) || [],
     locationPathname: '',
     locationQuery: {},
   },
@@ -62,7 +61,6 @@ export default {
   effects: {
     * query ({ payload }, { call, put, select }) {
       const { success, user } = yield call(query, payload)
-      console.log(user)
       const { locationPathname } = yield select(_ => _.app)
       if (success && user) {
         const { list } = yield call(menusService.query)
@@ -100,10 +98,7 @@ export default {
             })
           )
         }
-      } else if (
-        config.openPages &&
-        config.openPages.indexOf(locationPathname) < 0
-      ) {
+      } else if (config.openPages && config.openPages.indexOf(locationPathname) < 0) {
         yield put(
           routerRedux.push({
             pathname: '/login',

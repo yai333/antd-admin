@@ -17,12 +17,17 @@ let usersListData = Mock.mock({
       email: '@email',
       createTime: '@datetime',
       avatar () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.nickName.substr(0, 1))
+        return Mock.Random.image(
+          '100x100',
+          Mock.Random.color(),
+          '#757575',
+          'png',
+          this.nickName.substr(0, 1)
+        )
       },
     },
   ],
 })
-
 
 let database = usersListData.data
 
@@ -51,12 +56,14 @@ const adminUsers = [
     username: 'admin',
     password: 'admin',
     permissions: userPermission.ADMIN,
-  }, {
+  },
+  {
     id: 1,
     username: 'guest',
     password: 'guest',
     permissions: userPermission.DEFAULT,
-  }, {
+  },
+  {
     id: 2,
     username: '吴彦祖',
     password: '123456',
@@ -89,7 +96,6 @@ const NOTFOUND = {
 }
 
 module.exports = {
-
   [`POST ${apiPrefix}/user/login`] (req, res) {
     const { username, password } = req.body
     const user = adminUsers.filter(item => item.username === username)
@@ -160,7 +166,11 @@ module.exports = {
               }
               return true
             }
-            return String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) > -1
+            return (
+              String(item[key])
+                .trim()
+                .indexOf(decodeURI(other[key]).trim()) > -1
+            )
           }
           return true
         })
@@ -179,11 +189,18 @@ module.exports = {
     res.status(204).end()
   },
 
-
   [`POST ${apiPrefix}/user`] (req, res) {
     const newData = req.body
     newData.createTime = Mock.mock('@now')
-    newData.avatar = newData.avatar || Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', newData.nickName.substr(0, 1))
+    newData.avatar =
+      newData.avatar ||
+      Mock.Random.image(
+        '100x100',
+        Mock.Random.color(),
+        '#757575',
+        'png',
+        newData.nickName.substr(0, 1)
+      )
     newData.id = Mock.mock('@id')
 
     database.unshift(newData)
