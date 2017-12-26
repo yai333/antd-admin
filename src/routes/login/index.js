@@ -22,7 +22,7 @@ const Login = ({
   }
 
   function gotoSignup () {
-    dispatch({ type: 'login/gotSignupPage', payload: '' })
+    dispatch({ type: 'login/gotoPlansPage', payload: '' })
   }
 
   function gotoResetPassword () {
@@ -43,7 +43,13 @@ const Login = ({
                 required: true,
               },
             ],
-          })(<Input size="large" onPressEnter={handleOk} placeholder="Username" />)}
+          })(
+            <Input
+              size="large"
+              onPressEnter={handleOk}
+              placeholder="Username"
+            />
+          )}
         </FormItem>
         <FormItem hasFeedback>
           {getFieldDecorator('password', {
@@ -68,7 +74,7 @@ const Login = ({
             onClick={handleOk}
             loading={loading.effects.login}
           >
-            Sign in
+            SIGN IN
           </Button>
           <SignupLink gotoSignup={gotoSignup} />
           <ResetPasswordLink gotoResetPassword={gotoResetPassword} />

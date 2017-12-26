@@ -33,6 +33,11 @@ const Routers = function ({ history, app }) {
       component: () => import('./routes/login/'),
     },
     {
+      path: '/plans',
+      models: () => [import('./models/plans')],
+      component: () => import('./routes/plans/'),
+    },
+    {
       path: '/signup',
       component: () => import('./routes/signup/'),
     },

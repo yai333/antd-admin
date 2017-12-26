@@ -25,7 +25,6 @@ const NOTFOUND = {
   documentation_url: 'http://localhost:8000/request',
 }
 
-
 let postId = 0
 const posts = Mock.mock({
   'data|100': [
@@ -42,13 +41,19 @@ const posts = Mock.mock({
       'views|10-200': 1,
       'comments|10-200': 1,
       visibility: () => {
-        return Mock.mock('@pick(["Public",'
-          + '"Password protected", '
-          + '"Private"])')
+        return Mock.mock(
+          '@pick(["Public",' + '"Password protected", ' + '"Private"])'
+        )
       },
       date: '@dateTime',
       image () {
-        return Mock.Random.image('100x100', Mock.Random.color(), '#757575', 'png', this.author.substr(0, 1))
+        return Mock.Random.image(
+          '100x100',
+          Mock.Random.color(),
+          '#757575',
+          'png',
+          this.author.substr(0, 1)
+        )
       },
     },
   ],

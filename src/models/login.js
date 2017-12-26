@@ -22,8 +22,8 @@ export default {
         throw data
       }
     },
-    * gotSignupPage (action, { put }) {
-      yield put(routerRedux.push('/signup'))
+    * gotoPlansPage (action, { put }) {
+      yield put(routerRedux.push('/plans'))
     },
   },
 }

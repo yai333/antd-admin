@@ -9,7 +9,7 @@ module.exports = {
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
   CORS: [],
-  openPages: ['/login', '/signup'],
+  openPages: ['/login', '/signup', '/plans'],
   apiPrefix: '/api/v1',
   APIV1,
   APIV2,
