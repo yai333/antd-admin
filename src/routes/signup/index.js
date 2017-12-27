@@ -357,10 +357,45 @@ const Signup = ({
     </Row>
   )
 
+  const completeStep = (
+    <Row className={styles['complete-step-container']}>
+      <div>
+        <Icon type="check-circle-o" className={styles['success-icon']} />
+      </div>
+      <h1 className={styles['message-title']}>Order successfully placed</h1>
+      <h2 className={styles['order-number-content']}>
+        Your order numer is{' '}
+        <span className={styles['order-number']}>#4422556</span>
+      </h2>
+      <div className={styles['complete-step-footer']}>
+        <p>
+          You will receive an email confirmation shortly to
+          <span className={styles.email}> yourmail@gmail.com</span>
+        </p>
+        <Row>
+          <Col span={12}>
+            <h2>ORDER TOTAL</h2>
+          </Col>
+          <Col span={12}>
+            <h2>$518.00</h2>
+          </Col>
+        </Row>
+      </div>
+      <div className={styles['login-button-wrapper']}>
+        <Button
+          className={styles['login-button']}
+          type="primary"
+          htmlType="submit"
+        >
+          LOG IN
+        </Button>
+      </div>
+    </Row>
+  )
   const steps = [
     {
       title: 'Register',
-      content: registerStep,
+      content: completeStep,
       icon: 'user',
     },
     {
